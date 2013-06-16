@@ -7,7 +7,6 @@ DEBUG=0
 # -c file            Client certificate file (optional)
 # -k file            Client private key file (optional)
 # -P string          Password for decrypt client private key file (optional)
-# -u url             Absolute URL (optional, default 'https://hostname/')
 # -p port            Port (optional, default 443)
 # -e days            Check Server certificate expiration (optional)
 #                    warning if there are less than n days to expiration
@@ -86,7 +85,7 @@ PORT=443
 CHECK_EXPIRATION=0
 
 # Parse params
-while getopts ":H:c:k:P:u:p:e:" optname; do
+while getopts ":H:c:k:P:p:e:" optname; do
    case "$optname" in
       "H") HOSTNAME="$OPTARG" ;;
       "c") CLIENT_CERT="$OPTARG" ;;
@@ -141,11 +140,11 @@ mkdir -p "$OUTPUT_DIR"
 
 OPTIONAL=
 if [ -n "$CLIENT_CERT" ]; then
-   OPTIONAL="$OPTIONAL -cert '$CLIENT_CERT'"
+   OPTIONAL="$OPTIONAL -cert $CLIENT_CERT"
 fi
 
 if [ -n "$CLIENT_KEY" ]; then
-   OPTIONAL="$OPTIONAL -key '$CLIENT_KEY'"
+   OPTIONAL="$OPTIONAL -key $CLIENT_KEY"
 fi
 
 if [ -n "$CLIENT_KEY_PASS" ]; then
