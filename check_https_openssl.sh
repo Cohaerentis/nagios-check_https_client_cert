@@ -203,7 +203,7 @@ if [ $CHECK_EXPIRATION -gt 0 ]; then
       status=$NAGIOS_CRITICAL
    elif [ $limit -gt $exp ]; then
       message="WARNING: Certificate '$cn' will expired in $days days ($expdate)"
-      status=$NAGIOS_CRITICAL
+      status=$NAGIOS_WARNING
    else
       message="OK: Certificate '$cn' will expire on $expdate"
       status=$NAGIOS_OK
